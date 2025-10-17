@@ -66,3 +66,6 @@ export class GoogleBooksAPI {
     };
   }
 }
+
+// ADD THIS LINE - Export an instance for the import to work
+export const googlebooksapi = new GoogleBooksAPI();

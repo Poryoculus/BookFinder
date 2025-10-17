@@ -195,4 +195,4 @@ if (section === 'agenda') {
     setTimeout(() => {
         this.modules.agendaUI.renderAgendaDashboard();
     }, 100);
-}
+}package

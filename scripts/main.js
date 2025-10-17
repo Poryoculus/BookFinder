@@ -45,22 +45,34 @@ class BookFinderApp {
 
   bindEvents() {
     // Search functionality
-    const searchButton = document.querySelector(".search-button");
+    const searchForm = document.getElementById("search-form");
     const searchInput = document.querySelector(".search-input");
+    const searchButton = document.querySelector(".search-button");
+
+    if (searchForm) {
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent form submission
+        this.handleSearch();
+      });
+    }
 
     if (searchButton) {
-      searchButton.addEventListener("click", () => {
+      searchButton.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent any default behavior
         this.handleSearch();
       });
     }
 
     if (searchInput) {
       searchInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") this.handleSearch();
+        if (e.key === "Enter") {
+          e.preventDefault();
+          this.handleSearch();
+        }
       });
     }
 
-    // Navigation
+    // Navigation - keep your existing code
     document.querySelectorAll(".nav-button").forEach((button) => {
       button.addEventListener("click", (e) => {
         const section = e.target.dataset.section;
@@ -70,13 +82,13 @@ class BookFinderApp {
       });
     });
 
-    // Book selection event
+    // Book selection event - keep your existing code
     document.addEventListener("bookSelected", async (event) => {
       const { bookId, source } = event.detail;
       await this.handleBookSelection(bookId, source);
     });
 
-    // Add to agenda event
+    // Add to agenda event - keep your existing code
     document.addEventListener("addToAgenda", async (event) => {
       const { bookId, source } = event.detail;
       await this.handleAddToAgenda(bookId, source);
@@ -188,8 +200,38 @@ class BookFinderApp {
 
 // Initialize app when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  new BookFinderApp();
+  window.app = new BookFinderApp(); // Store the instance in window.app
+  console.log("App instance stored in window.app:", window.app);
 });
 
-// Export for potential debugging
-window.BookFinderApp = BookFinderApp;
+// Debug function
+window.debugApp = function () {
+  console.log("=== APP DEBUG ===");
+  console.log("App instance:", window.app);
+
+  if (window.app) {
+    console.log("✅ App is properly initialized!");
+    console.log("Modules:", window.app.modules);
+  } else {
+    console.log("❌ App is undefined - check initialization");
+  }
+
+  console.log("Navigation buttons:", document.querySelectorAll(".nav-button"));
+  console.log("Sections:");
+  console.log("- Search:", document.getElementById("book-results"));
+  console.log("- Discussion:", document.getElementById("discussion-section"));
+  console.log("- Agenda:", document.getElementById("agenda-section"));
+  console.log(
+    "- Recommendations:",
+    document.getElementById("recommendations-section"),
+  );
+
+  document.querySelectorAll(".nav-button").forEach((btn) => {
+    console.log(`Button [${btn.textContent.trim()}]:`, btn.dataset.section);
+  });
+};
+
+// Remove the duplicate DOMContentLoaded listener
+// document.addEventListener("DOMContentLoaded", function () {
+//   window.debugApp();
+// });

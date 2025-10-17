@@ -138,6 +138,61 @@ export class UIManager {
     return text.length > length ? text.substring(0, length) + "..." : text;
   }
 
+  displayBookDetails(book) {
+    // eslint-disable-next-line no-console
+    console.log("Displaying book details:", book);
+
+    const html = `
+    <div class="book-details-content fade-in">
+      <div class="book-cover-large">
+        <img 
+          src="${book.thumbnail || "https://via.placeholder.com/300x450?text=No+Cover"}" 
+          alt="Cover of ${book.title}"
+        >
+      </div>
+
+      <div class="book-info-detailed">
+        <h2 class="book-title">${book.title}</h2>
+        <p class="book-author">by ${book.authors?.join(", ") || "Unknown Author"}</p>
+
+        ${
+          book.description
+            ? `
+              <div class="summary-section">
+                <h3 class="section-title">Summary</h3>
+                <div class="summary-text">${book.description}</div>
+              </div>
+            `
+            : ""
+        }
+
+        <button 
+          class="btn-primary" 
+          onclick="window.app.handleAddToAgenda('${book.id}', '${book._source || "google"}')"
+        >
+          Add to Reading List
+        </button>
+
+        <button 
+          class="btn-secondary" 
+          onclick="window.app.modules.ui.showSection('search')"
+        >
+          Back to Search
+        </button>
+      </div>
+    </div>
+  `;
+
+    // Render into DOM
+    this.elements.bookDetails.innerHTML = html;
+    this.elements.bookDetails.classList.remove("hidden");
+
+    // Hide search results when showing details
+    if (this.elements.bookResults) {
+      this.elements.bookResults.classList.add("hidden");
+    }
+  }
+
   /**
    * Bind events to book cards
    */
