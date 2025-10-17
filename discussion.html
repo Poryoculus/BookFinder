@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussion Rooms - Book Finder & Reading Club</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/discussion.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header role="banner">
+        <div class="app-icon" aria-label="Book Finder App Icon"></div>
+        <h1>Book Discussion Rooms</h1>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">← Back to Book Search</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- User Controls -->
+        <section class="user-section">
+          <div class="user-profile">
+            <label for="user-name">Your Display Name:</label>
+            <input
+              type="text"
+              id="user-name"
+              placeholder="Enter your name for discussions"
+              value="Book Lover"
+            />
+            <button id="save-user-name" class="btn-primary">Save Name</button>
+          </div>
+          <div class="user-stats" id="user-stats">
+            <span>Joined: <strong id="joined-rooms">0</strong> rooms</span>
+            <span
+              >Posted: <strong id="posted-messages">0</strong> messages</span
+            >
+          </div>
+        </section>
+
+        <!-- Discussion Creation -->
+        <section class="creation-section">
+          <h2>Start a New Discussion</h2>
+          <div class="creation-form">
+            <div class="form-group">
+              <input
+                type="text"
+                id="book-title"
+                placeholder="Book Title *"
+                required
+              />
+              <input
+                type="text"
+                id="book-author"
+                placeholder="Book Author *"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="room-name"
+                placeholder="Discussion Room Name (optional)"
+              />
+              <textarea
+                id="room-description"
+                placeholder="Room description (what would you like to discuss?)"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <select id="room-category">
+                <option value="general">General Discussion</option>
+                <option value="spoilers">Spoilers Allowed</option>
+                <option value="spoiler-free">Spoiler-Free</option>
+                <option value="analysis">Literary Analysis</option>
+                <option value="casual">Casual Chat</option>
+              </select>
+              <button id="create-room" class="btn-primary">
+                Create Discussion Room
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Search and Filter -->
+        <section class="search-section">
+          <div class="search-filters">
+            <input
+              type="text"
+              id="room-search"
+              placeholder="Search discussions by book title, author, or topic..."
+            />
+            <select id="category-filter">
+              <option value="all">All Categories</option>
+              <option value="general">General</option>
+              <option value="spoilers">Spoilers</option>
+              <option value="spoiler-free">Spoiler-Free</option>
+              <option value="analysis">Analysis</option>
+              <option value="casual">Casual</option>
+            </select>
+            <select id="sort-by">
+              <option value="recent">Most Recent</option>
+              <option value="active">Most Active</option>
+              <option value="members">Most Members</option>
+              <option value="messages">Most Messages</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Discussions Grid -->
+        <section class="discussions-section">
+          <div class="section-header">
+            <h2>Active Discussion Rooms</h2>
+            <div class="stats" id="global-stats">
+              <span id="total-rooms">0</span> rooms •
+              <span id="total-messages">0</span> messages •
+              <span id="total-members">0</span> members
+            </div>
+          </div>
+
+          <div class="discussions-grid" id="discussions-grid">
+            <!-- Discussion rooms will be dynamically loaded here -->
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <div class="empty-icon">💬</div>
+            <h3>No Discussion Rooms Yet</h3>
+            <p>
+              Be the first to start a book discussion! Create a room above to
+              begin.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Discussion Room Modal -->
+    <div id="room-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-room-name">Discussion Room</h3>
+          <button id="close-modal" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="room-info">
+            <div class="book-info">
+              <strong id="modal-book-title"></strong> by
+              <span id="modal-book-author"></span>
+            </div>
+            <div class="room-meta">
+              <span id="modal-room-category"></span>
+              <span id="modal-room-members"></span>
+              <span id="modal-room-activity"></span>
+            </div>
+            <p id="modal-room-description" class="room-description"></p>
+          </div>
+
+          <div class="messages-container">
+            <div class="messages-header">
+              <h4>Discussion</h4>
+              <div class="message-controls">
+                <button id="refresh-messages" class="btn-secondary">
+                  Refresh
+                </button>
+              </div>
+            </div>
+            <div class="messages-list" id="messages-list">
+              <!-- Messages will be loaded here -->
+            </div>
+            <div class="message-input">
+              <textarea
+                id="new-message"
+                placeholder="Share your thoughts about this book... (Max 500 characters)"
+                maxlength="500"
+              ></textarea>
+              <div class="input-actions">
+                <select id="message-rating">
+                  <option value="">No rating</option>
+                  <option value="1">★ (1/5)</option>
+                  <option value="2">★★ (2/5)</option>
+                  <option value="3">★★★ (3/5)</option>
+                  <option value="4">★★★★ (4/5)</option>
+                  <option value="5">★★★★★ (5/5)</option>
+                </select>
+                <div class="char-count">
+                  <span id="char-counter">0</span>/500
+                </div>
+                <button id="send-message" class="btn-primary">
+                  Post Message
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/discussionApp.js"></script>
+  </body>
+</html>

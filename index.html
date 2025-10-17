@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Finder & Reading Club</title>
+    <meta
+      name="description"
+      content="Discover, discuss, and organize books with our community-driven reading platform"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/animations.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header role="banner">
+        <div class="app-icon" aria-label="Book Finder App Icon"></div>
+        <h1>Book Finder & Reading Club</h1>
+      </header>
+
+      <main>
+        <section class="search-section" aria-label="Book Search">
+          <div class="search-container">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search for books by title, author, or genre..."
+              aria-label="Search books"
+            />
+            <button class="search-button">Search</button>
+          </div>
+        </section>
+
+        <nav class="nav-buttons" aria-label="Main Navigation">
+          <button class="nav-button" data-section="clubs">Reading Clubs</button>
+          <button class="nav-button" data-section="recommendations">
+            Recommendations
+          </button>
+          <button class="nav-button" data-section="agenda">
+            My Reading Agenda
+          </button>
+        </nav>
+
+        <!-- Dynamic content sections -->
+        <div id="book-results" class="book-results" aria-live="polite"></div>
+
+        <section
+          id="book-details"
+          class="book-details hidden"
+          aria-label="Book Details"
+        ></section>
+
+        <section
+          id="discussion-section"
+          class="discussion-section hidden"
+          aria-label="Book Discussions"
+        >
+          <h2 class="section-title">Discussion Rooms</h2>
+          <div id="discussion-rooms"></div>
+        </section>
+
+        <section
+          id="agenda-section"
+          class="agenda-section hidden"
+          aria-label="Reading Agenda"
+        >
+          <h2 class="section-title">My Reading Agenda</h2>
+          <div id="agenda-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
+
