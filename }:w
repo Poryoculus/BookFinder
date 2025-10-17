@@ -1,0 +1,198 @@
+import { GoogleBooksAPI } from "./api/googleBooks.js";
+import { OpenLibraryAPI } from "./api/openLibrary.js";
+import { UIManager } from "./modules/uiManager.js";
+import { SearchHandler } from "./modules/searchHandler.js";
+import { DiscussionManager } from "./modules/discussionManager.js";
+import { AgendaManager } from "./modules/agendaManager.js";
+import { AgendaUI } from './scripts/modules/agendaUI.js';
+
+class BookFinderApp {
+  constructor() {
+    this.apis = {
+      googleBooks: new GoogleBooksAPI(),
+      openLibrary: new OpenLibraryAPI(),
+    };
+
+    this.modules = {
+      ui: new UIManager(),
+      search: new SearchHandler(this.apis),
+      discussion: new DiscussionManager(),
+      agenda: new AgendaManager(),
+    };
+
+    this.init();
+  }
+
+  init() {
+    this.bindEvents();
+    this.modules.agenda.loadFromStorage();
+    this.modules.discussion.loadFromStorage();
+  }
+
+  bindEvents() {
+    // Search functionality
+    document.querySelector(".search-button").addEventListener("click", () => {
+      this.handleSearch();
+    });
+
+    document
+      .querySelector(".search-input")
+      .addEventListener("keypress", (e) => {
+        if (e.key === "Enter") this.handleSearch();
+      });
+
+    // Navigation
+    document.querySelectorAll(".nav-button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        this.handleNavigation(e.target.dataset.section);
+      });
+    });
+  }
+
+  async handleSearch() {
+    const query = document.querySelector(".search-input").value.trim();
+    if (query) {
+      await this.modules.search.performSearch(query);
+    }
+  }
+
+  handleNavigation(section) {
+    this.modules.ui.showSection(section);
+  }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  new BookFinderApp();
+});
+
+// Add this to the bindEvents method in BookFinderApp class
+document.addEventListener('bookSelected', async (event) => {
+    const { bookId, source } = event.detail;
+    await this.handleBookSelection(bookId, source);
+});
+
+/**
+ * Handle book selection and display enriched details
+ */
+async handleBookSelection(bookId, source) {
+    try {
+        this.modules.ui.showLoading();
+        const details = await this.modules.search.getEnrichedBookDetails(bookId, source);
+        this.modules.ui.displayBookDetails(details);
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error loading book details:', error);
+        this.modules.ui.showError('Failed to load book details. Please try again.');
+    }
+}
+
+class BookFinderApp {
+    constructor() {
+        this.apis = {
+            googleBooks: new GoogleBooksAPI(),
+            openLibrary: new OpenLibraryAPI()
+        };
+        
+        this.modules = {
+            ui: new UIManager(),
+            search: new SearchHandler(this.apis),
+            discussion: new DiscussionManager(),
+            discussionUI: null, // Will be initialized after discussion manager
+            agenda: new AgendaManager()
+        };
+
+        // Initialize discussion UI after discussion manager
+        this.modules.discussionUI = new DiscussionUI(this.modules.discussion);
+        
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.modules.agenda.loadFromStorage();
+        this.modules.discussionUI.init();
+    }
+
+    bindEvents() {
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', () => {
+            this.handleSearch();
+        });
+
+        document.querySelector('.search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.handleSearch();
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.handleNavigation(e.target.dataset.section);
+            });
+        });
+
+        // Book selection for discussions
+        document.addEventListener('bookSelected', async (event) => {
+            const { bookId, source, bookData } = event.detail;
+            await this.handleBookSelection(bookId, source, bookData);
+        });
+    }
+
+    async handleSearch() {
+        const query = document.querySelector('.search-input').value.trim();
+        if (query) {
+            await this.modules.search.performSearch(query);
+        }
+    }
+
+    async handleBookSelection(bookId, source, bookData = null) {
+        try {
+            this.modules.ui.showLoading();
+            const details = await this.modules.search.getEnrichedBookDetails(bookId, source);
+            this.modules.ui.displayBookDetails(details);
+            
+            // Store book data for potential discussion creation
+            this.currentBookData = details;
+            
+        } catch (error) {
+            console.error('Error loading book details:', error);
+            this.modules.ui.showError('Failed to load book details. Please try again.');
+        }
+    }
+
+    handleNavigation(section) {
+        this.modules.ui.showSection(section);
+        
+        if (section === 'clubs') {
+            // Refresh discussions when navigating to clubs section
+            setTimeout(() => {
+                this.modules.discussionUI.renderDiscussionSection();
+            }, 100);
+        }
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new BookFinderApp();
+});
+
+// In the BookFinderApp constructor:
+this.modules = {
+    ui: new UIManager(),
+    search: new SearchHandler(this.apis),
+    discussion: new DiscussionManager(),
+    discussionUI: new DiscussionUI(this.modules.discussion),
+    agenda: new AgendaManager(),
+    agendaUI: null // Will initialize after agenda manager
+};
+
+// After initializing agenda manager:
+this.modules.agendaUI = new AgendaUI(this.modules.agenda);
+
+// Add to handleNavigation method:
+if (section === 'agenda') {
+    setTimeout(() => {
+        this.modules.agendaUI.renderAgendaDashboard();
+    }, 100);
+}

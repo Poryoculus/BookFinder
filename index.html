@@ -8,21 +8,31 @@
       name="description"
       content="Discover, discuss, and organize books with our community-driven reading platform"
     />
+    <meta
+      name="keywords"
+      content="books, reading, book club, literature, discussion"
+    />
+    <meta name="author" content="Your Name" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/animations.css" />
+    <link rel="stylesheet" href="styles/discussion.css" />
+    <link rel="stylesheet" href="styles/agenda.css" />
   </head>
   <body>
     <div class="container">
       <header role="banner">
         <div class="app-icon" aria-label="Book Finder App Icon"></div>
         <h1>Book Finder & Reading Club</h1>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="discussion.html" class="nav-link">Discussion Rooms</a>
+        </nav>
       </header>
 
-      <main>
+      <main id="main-content" role="main">
         <section class="search-section" aria-label="Book Search">
           <div class="search-container">
             <input
@@ -43,6 +53,12 @@
           <button class="nav-button" data-section="agenda">
             My Reading Agenda
           </button>
+          <a
+            href="discussion.html"
+            class="nav-button"
+            style="text-decoration: none; text-align: center"
+            >Discussion Rooms</a
+          >
         </nav>
 
         <!-- Dynamic content sections -->
@@ -59,8 +75,15 @@
           class="discussion-section hidden"
           aria-label="Book Discussions"
         >
-          <h2 class="section-title">Discussion Rooms</h2>
-          <div id="discussion-rooms"></div>
+          <div class="discussion-placeholder">
+            <h2>Book Discussion Rooms</h2>
+            <p>
+              Join conversations about your favorite books with fellow readers.
+            </p>
+            <a href="discussion.html" class="btn-primary"
+              >Go to Discussion Rooms</a
+            >
+          </div>
         </section>
 
         <section
@@ -68,13 +91,38 @@
           class="agenda-section hidden"
           aria-label="Reading Agenda"
         >
-          <h2 class="section-title">My Reading Agenda</h2>
-          <div id="agenda-list"></div>
+          <!-- Agenda content will be dynamically loaded -->
+        </section>
+
+        <section
+          id="recommendations-section"
+          class="recommendations-section hidden"
+          aria-label="Book Recommendations"
+        >
+          <div class="recommendations-placeholder">
+            <h2>Weekly Recommendations</h2>
+            <p>
+              Personalized book suggestions based on your reading preferences.
+            </p>
+            <p class="coming-soon">Coming Soon!</p>
+          </div>
         </section>
       </main>
+
+      <footer
+        role="contentinfo"
+        style="
+          text-align: center;
+          margin-top: 40px;
+          padding: 20px;
+          border-top: 1px solid #2f4f4f;
+        "
+      >
+        <p>&copy; 2024 Book Finder & Reading Club. All rights reserved.</p>
+      </footer>
     </div>
 
     <!-- JavaScript Modules -->
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
   </body>
 </html>

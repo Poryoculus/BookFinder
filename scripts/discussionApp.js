@@ -523,7 +523,7 @@ class DiscussionApp {
   updateGlobalStats() {
     let totalRooms = 0;
     let totalMessages = 0;
-    let totalMembers = new Set();
+    const totalMembers = new Set();
 
     for (const rooms of this.discussions.values()) {
       totalRooms += rooms.length;

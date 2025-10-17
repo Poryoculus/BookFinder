@@ -1,3 +1,5 @@
+import { LocalStorageManager } from "../utils/localStorage.js";
+
 /**
  * Discussion Manager - Handles book discussion rooms and user interactions
  */
@@ -302,7 +304,7 @@ export class DiscussionManager {
   getStatistics() {
     let totalRooms = 0;
     let totalMessages = 0;
-    let totalMembers = new Set();
+    const totalMembers = new Set();
 
     for (const rooms of this.discussions.values()) {
       totalRooms += rooms.length;

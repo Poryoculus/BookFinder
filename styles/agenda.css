@@ -1,0 +1,725 @@
+/* Agenda Styles */
+.agenda-dashboard {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #2f4f4f;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2f4f4f;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.stat-action {
+  background: #2f4f4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s;
+}
+
+.stat-action:hover {
+  background: #1a2f2f;
+}
+
+.stat-subtitle {
+  font-size: 0.8rem;
+  color: #28a745;
+  font-weight: 600;
+}
+
+/* Detailed Stats */
+.stats-detailed {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.stats-detailed h3 {
+  font-family: "Playfair Display", serif;
+  color: #2f4f4f;
+  margin-bottom: 15px;
+}
+
+.stats-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.stat-name {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.stat-number {
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+/* Section Previews */
+.section-preview {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.section-preview h3 {
+  font-family: "Playfair Display", serif;
+  color: #2f4f4f;
+  margin-bottom: 15px;
+}
+
+.books-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.book-preview-card {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.book-preview-card:hover {
+  background: #e9ecef;
+}
+
+.book-preview-cover {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-preview-info {
+  flex: 1;
+}
+
+.book-preview-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2f4f4f;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-preview-author {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.reading-progress {
+  margin-top: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.progress-bar.large {
+  height: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2f4f4f;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.preview-footer {
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Goals Preview */
+.goals-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.goal-preview-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #2f4f4f;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.goal-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f4f4f;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.goal-deadline {
+  font-size: 0.7rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* Agenda Navigation */
+.agenda-navigation {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.nav-btn:hover {
+  background: #e9ecef;
+  border-color: #2f4f4f;
+  color: #2f4f4f;
+}
+
+.nav-btn.active {
+  background: #2f4f4f;
+  border-color: #2f4f4f;
+  color: white;
+}
+
+/* List Views */
+.agenda-list-view {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.view-header {
+  margin-bottom: 25px;
+}
+
+.view-subtitle {
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Books Grid */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.agenda-book-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.agenda-book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: #2f4f4f;
+}
+
+.book-card-header {
+  position: relative;
+}
+
+.book-card-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.book-card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.agenda-book-card:hover .book-card-actions {
+  opacity: 1;
+}
+
+.book-card-info {
+  padding: 15px;
+}
+
+.book-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2f4f4f;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-card-author {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.book-card-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.meta-item {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  background: #e9ecef;
+  border-radius: 10px;
+  color: #666;
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+}
+.priority-medium {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.priority-low {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.book-notes {
+  margin-top: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  border-left: 3px solid #2f4f4f;
+}
+
+.book-notes p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Reading Progress List */
+.reading-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.reading-progress-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.reading-progress-card:hover {
+  border-color: #2f4f4f;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.progress-card-header {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.progress-book-cover {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.progress-card-info {
+  flex: 1;
+}
+
+.progress-book-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2f4f4f;
+  margin-bottom: 5px;
+}
+
+.progress-book-author {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.progress-stats {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.progress-stat {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.progress-card-content {
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+}
+
+.progress-section {
+  margin-bottom: 15px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.progress-percentage {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.progress-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.progress-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+/* Empty States */
+.empty-state-agenda {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-state-agenda .empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state-agenda h3 {
+  font-family: "Playfair Display", serif;
+  color: #2f4f4f;
+  margin-bottom: 10px;
+}
+
+.empty-state-agenda p {
+  margin-bottom: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button Styles */
+.btn-text {
+  background: none;
+  border: none;
+  color: #2f4f4f;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-text:hover {
+  color: #1a2f2f;
+}
+
+/* Modal Styles for Agenda */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #2f4f4f;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: white;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.modal-body {
+  padding: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-help {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+/* Notifications */
+.agenda-notification {
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .books-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda-navigation {
+    flex-direction: column;
+  }
+
+  .nav-btn {
+    text-align: center;
+  }
+
+  .progress-card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .progress-stats {
+    justify-content: center;
+  }
+
+  .progress-actions {
+    flex-direction: column;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "book-finder-reading-club",
+  "version": "1.0.0",
+  "description": "A web application for discovering, discussing, and organizing books",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint scripts/",
+    "lint:fix": "eslint scripts/ --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}
